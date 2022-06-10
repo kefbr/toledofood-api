@@ -2,15 +2,13 @@ package br.com.toledofoodapi.di.notificacao;
 
 import br.com.toledofoodapi.di.modelo.Cliente;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @Setter
+@Component
 public class NotificadorEmail implements Notificador {
     private boolean caixaAlta;
     private String hostServidorSmtp;
-
-    public NotificadorEmail(String hostServidorSmtp) {
-        this.hostServidorSmtp = hostServidorSmtp;
-    }
 
     @Override
     public void notificar(Cliente cliente, String mensagem){
