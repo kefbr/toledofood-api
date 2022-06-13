@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 @TipoDoNotificador(NivelUrgencia.SEM_URGENCIA)
-@Profile("prod")
-public class NotificadorEmail implements Notificador {
+@Profile("dev")
+public class NotificadorEmailMock implements Notificador {
     private String hostServidorSmtp;
+
     @Override
     public void notificar(Cliente cliente, String mensagem){
-        System.out.printf("Notificando %s através do e-mail %s usando STMP %s: %s %n",
+        System.out.printf("MOCK: Notificando %s através do e-mail %s usando STMP %s: %s %n",
                 cliente.getNome(), cliente.getEmail(), this.hostServidorSmtp, mensagem);
     }
 }
