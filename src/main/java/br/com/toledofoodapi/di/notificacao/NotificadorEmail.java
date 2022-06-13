@@ -2,13 +2,11 @@ package br.com.toledofoodapi.di.notificacao;
 
 import br.com.toledofoodapi.di.modelo.Cliente;
 import lombok.Setter;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Setter
 @Component
 @TipoDoNotificador(NivelUrgencia.SEM_URGENCIA)
-@Profile("prod")
 public class NotificadorEmail implements Notificador {
     private String hostServidorSmtp;
     @Override
