@@ -2,12 +2,12 @@ package br.com.toledofoodapi.di.notificacao;
 
 import br.com.toledofoodapi.di.modelo.Cliente;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Setter
 @Component
-@Primary
+@Qualifier("normal")
 public class NotificadorSMS implements Notificador {
 
     @Override

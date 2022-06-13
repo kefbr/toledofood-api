@@ -2,11 +2,12 @@ package br.com.toledofoodapi.di.notificacao;
 
 import br.com.toledofoodapi.di.modelo.Cliente;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Setter
 @Component
+@Qualifier("urgente")
 public class NotificadorEmail implements Notificador {
     private boolean caixaAlta;
     private String hostServidorSmtp;
