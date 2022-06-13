@@ -5,16 +5,17 @@ import br.com.toledofoodapi.di.notificacao.Notificador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class AtivacaoClienteService {
-    private final Notificador notificador;
     @Autowired
-    public AtivacaoClienteService(Notificador notificador) {
-        this.notificador = notificador;
-    }
+    private List<Notificador> notificadores;
 
     public void ativar(Cliente cliente){
         cliente.ativar();
-        notificador.notificar(cliente, "Seu cadastro está ativo com sucesso.");
+        for (Notificador notificador: notificadores) {
+            notificador.notificar(cliente, "Seu cadastro está ativo com sucesso.");
+        }
     }
 }
