@@ -13,7 +13,7 @@ public class NotificadorEmail implements Notificador {
     private NotificadorProperties notificadorProperties;
     @Override
     public void notificar(Cliente cliente, String mensagem){
-        System.out.printf("Notificando %s através do e-mail %s usando STMP %s: %s %n",
+        System.out.printf("Notificando %s através do e-mail %s usando STMP %s - %s %n",
                 cliente.getNome(), cliente.getEmail(),
                 notificadorProperties.getHostServidor()+":"+notificadorProperties.getPortaServidor(),
                 mensagem);
