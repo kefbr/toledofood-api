@@ -2,11 +2,10 @@ package br.com.toledofoodapi.jpa;
 
 import br.com.toledofoodapi.ToledofoodApiApplication;
 import br.com.toledofoodapi.domain.model.Cozinha;
+import br.com.toledofoodapi.domain.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
-
-import java.util.List;
 
 public class BuscaCozinhaMain {
 
@@ -15,9 +14,9 @@ public class BuscaCozinhaMain {
                 .web(WebApplicationType.NONE)
                 .run(args);
 
-        CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+        CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
-        Cozinha cozinha = cadastroCozinha.buscar(1L);
+        Cozinha cozinha = cozinhaRepository.porId(1L);
 
         System.out.println(cozinha.getNome());
 

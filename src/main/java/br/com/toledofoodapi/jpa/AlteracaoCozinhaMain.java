@@ -2,6 +2,7 @@ package br.com.toledofoodapi.jpa;
 
 import br.com.toledofoodapi.ToledofoodApiApplication;
 import br.com.toledofoodapi.domain.model.Cozinha;
+import br.com.toledofoodapi.domain.repository.CozinhaRepository;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
@@ -13,12 +14,12 @@ public class AlteracaoCozinhaMain {
                 .web(WebApplicationType.NONE)
                 .run(args);
 
-        CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+        CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
         Cozinha cozinha = new Cozinha();
         cozinha.setId(1L);
         cozinha.setNome("Brasileira");
-        cadastroCozinha.salvar(cozinha);
+        cozinhaRepository.adicionar(cozinha);
         System.out.printf("%d - %s %n", cozinha.getId(),cozinha.getNome());
     }
 }

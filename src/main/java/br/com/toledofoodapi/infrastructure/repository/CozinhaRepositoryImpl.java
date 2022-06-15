@@ -1,6 +1,7 @@
-package br.com.toledofoodapi.jpa;
+package br.com.toledofoodapi.infrastructure.repository;
 
 import br.com.toledofoodapi.domain.model.Cozinha;
+import br.com.toledofoodapi.domain.repository.CozinhaRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -10,28 +11,31 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-public class CadastroCozinha {
-
+public class CozinhaRepositoryImpl implements CozinhaRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Cozinha> listar(){
+    @Override
+    public List<Cozinha> todas(){
         TypedQuery<Cozinha> query = entityManager.createQuery("from Cozinha", Cozinha.class);
         return query.getResultList();
     }
 
-    public Cozinha buscar(Long id){
+    @Override
+    public Cozinha porId(Long id){
         return entityManager.find(Cozinha.class,id);
     }
 
     @Transactional
-    public Cozinha salvar(Cozinha cozinha){
+    @Override
+    public Cozinha adicionar(Cozinha cozinha){
         return entityManager.merge(cozinha);
     }
 
     @Transactional
+    @Override
     public void remover (Cozinha cozinha){
-        cozinha = buscar(cozinha.getId());
+        cozinha = porId(cozinha.getId());
         entityManager.remove(cozinha);
     }
 }
