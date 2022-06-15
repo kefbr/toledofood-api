@@ -1,8 +1,7 @@
 package br.com.toledofoodapi.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.Hibernate;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,14 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.util.Objects;
 
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Restaurante {
 
     @Id
+    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,16 +25,4 @@ public class Restaurante {
     @Column(name = "tx_frete")
     private BigDecimal taxaFrete;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Restaurante that = (Restaurante) o;
-        return id != null && Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
