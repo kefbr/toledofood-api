@@ -3,6 +3,7 @@ package br.com.toledofoodapi.api.controller;
 import br.com.toledofoodapi.api.model.CozinhasXmlWrapper;
 import br.com.toledofoodapi.domain.model.Cozinha;
 import br.com.toledofoodapi.domain.repository.CozinhaRepository;
+import br.com.toledofoodapi.domain.service.CadastroCozinhaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,6 +32,9 @@ public class CozinhaController {
     @Autowired
     private CozinhaRepository cozinhaRepository;
 
+    @Autowired
+    private CadastroCozinhaService cadastroCozinha;
+
     @GetMapping
     public List<Cozinha> listar(){
         return cozinhaRepository.listar();
@@ -52,7 +56,7 @@ public class CozinhaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cozinha salvar(@RequestBody Cozinha cozinha){
-        return cozinhaRepository.salvar(cozinha);
+        return cadastroCozinha.salvar(cozinha);
     }
 
     @PutMapping("/{cozinhaId}")
